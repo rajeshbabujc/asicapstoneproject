@@ -1,29 +1,25 @@
 pipeline{
     agent any
-    tools{
-        maven 'Maven'
-    }
     stages{
         stage('Build Maven'){
             steps{
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kotianrakshith/CapstoneProject2']])
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/rajeshbabujc/asicapstoneproject']])
                 sh 'mvn clean install'
             }
         }
         stage('Build Docker Image'){
             steps{
                 script{
-                    sh 'docker build -t kotianrakshith/insuranceapp .'
+                    sh 'docker build -t docrajesh123/asiinsuranceapp .'
                 }
             }
         }
         stage('Push Docker Image to Dockerhub'){
             steps{
                 script{
-                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpassword')]) {
-                    sh 'docker login -u kotianrakshith -p ${dockerhubpassword}'
-
-                    sh 'docker push kotianrakshith/insuranceapp'
+                    withCredentials([gitUsernamePassword(credentialsId: 'dockerhubpwd', gitToolName: 'Default')]) {
+                    sh 'docker login -u docrajesh123 -p capstoneasi@132S'
+                    sh 'docker push docrajesh123/demoapp'
                     }
                 }
             }
@@ -33,6 +29,5 @@ pipeline{
                     sh 'ansible-playbook ansible-playbook.yml'
             }
         }
-        
     }
 }
