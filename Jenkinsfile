@@ -19,7 +19,7 @@ pipeline{
                 script{
                     withCredentials([gitUsernamePassword(credentialsId: 'dockerhubpwd', gitToolName: 'Default')]) {
                     sh 'docker login -u docrajesh123 -p capstoneasi@132S'
-                    sh 'docker push docrajesh123/demoapp'
+                    sh 'docker push docrajesh123/asiinsuranceapp'
                     }
                 }
             }
