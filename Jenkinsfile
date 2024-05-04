@@ -17,7 +17,7 @@ pipeline{
         stage('Push Docker Image to Dockerhub'){
             steps{
                 script{
-                    withCredentials([gitUsernamePassword(credentialsId: 'dockerhubpwd', gitToolName: 'Default')]) {
+                    withCredentials([string(credentialsId: 'dockerhubpwd', variable: 'dockerhubpassword')]) {
                     sh 'docker login -u docrajesh123 -p capstoneasi@132S'
                     sh 'docker push docrajesh123/asiinsuranceapp'
                     }
