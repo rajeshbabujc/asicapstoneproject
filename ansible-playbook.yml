@@ -1,6 +1,5 @@
 ---
-- name: deployment-docker
-  hosts: docker
+- hosts: docker
   tasks:
     - name: Stop Container if any
       docker_container:
@@ -9,7 +8,7 @@
       ignore_errors: true
     - name: deploy insuranceapp docker container
       docker_container:
-        image: docrajesh123/asiinsuranceapp:latest
+        image: docrajesh123/asiinsuranceapp
         name: insuranceapp
         state: started
         auto_remove: true
