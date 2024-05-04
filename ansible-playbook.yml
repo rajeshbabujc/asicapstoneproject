@@ -9,9 +9,8 @@
       ignore_errors: true
     - name: deploy insuranceapp docker container
       docker_container:
-        image: docker.io/docrajesh123/asiinsuranceapp
+        image: docrajesh123/asiinsuranceapp:latest
         name: insuranceapp
-        become: true
         state: started
         auto_remove: true
         ports:
