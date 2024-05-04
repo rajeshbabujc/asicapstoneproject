@@ -1,5 +1,5 @@
 ---
-- hosts: docker
+- hosts: ubuntu@3.95.26.154
   tasks:
     - name: Stop Container if any
       docker_container:
